@@ -1,0 +1,28 @@
+import React,{useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import './styles.css';
+
+const GITHUB='https://github.com/Sushmitadasari/Netflix_portfolio';
+const profileGithub='https://github.com/Sushmitadasari/Netflix_portfolio';
+const linkedin='https://in.linkedin.com/in/thambi-kasimala-985086290';
+
+const projects=[
+ {title:'AI Travel Planner',type:'AI APPLICATION',desc:'An end-to-end travel planning application that turns user preferences into personalized plans using Python, FastAPI, Streamlit, SQLite and the Groq API.',tags:['Python','FastAPI','Streamlit','SQLite','Groq API'],icon:'✈️'},
+ {title:'AI Gmail Auto-Labeling',type:'AI AUTOMATION',desc:'An intelligent n8n workflow that reads incoming Gmail messages, classifies them with Google Gemini and automatically routes them into useful labels.',tags:['n8n','Gemini','Gmail API','AI Automation'],icon:'✉️'},
+ {title:'Fake URL Detection System',type:'SECURITY / ML',desc:'A Python-based academic project focused on detecting phishing URLs through URL pattern analysis, testing, validation and collaborative development.',tags:['Python','Pandas','Phishing Detection','Analysis'],icon:'🛡️'},
+];
+const skills=[['Python','Core development'],['FastAPI','Backend APIs'],['Streamlit','Rapid UI'],['SQL','Database fundamentals'],['AI APIs','Gemini • Groq'],['n8n','Workflow automation'],['Git','Version control'],['IoT','Academic specialization']];
+
+function App(){const [menu,setMenu]=useState(false); const [active,setActive]=useState('home');
+ const go=id=>{setActive(id);setMenu(false);document.getElementById(id)?.scrollIntoView({behavior:'smooth'});};
+ return <div className="app">
+  <header className="nav"><button className="brand" onClick={()=>go('home')}>THAMBI<span>.</span></button><button className="hamb" onClick={()=>setMenu(!menu)}>☰</button><nav className={menu?'open':''}>{['home','about','projects','skills','contact'].map(x=><button className={active===x?'on':''} onClick={()=>go(x)} key={x}>{x}</button>)}</nav></header>
+  <main>
+   <section id="home" className="hero section"><div className="hero-bg"/><div className="hero-copy"><div className="eyebrow">PYTHON • AI • FULL-STACK</div><h1>Building useful<br/><em>things with code.</em></h1><p className="lead">I'm <strong>Kasimala Thambi</strong>, a Computer Science (IoT) graduate focused on Python development, AI-integrated applications and practical automation.</p><div className="actions"><a className="primary" href="#projects" onClick={()=>go('projects')}>Explore my work <span>→</span></a><a className="secondary" href="mailto:thambi6300@gmail.com">Let's talk</a></div><div className="stats"><div><b>7.63</b><small>CGPA</small></div><div><b>2026</b><small>GRADUATE</small></div><div><b>AI + PY</b><small>FOCUS</small></div></div></div><div className="hero-card"><div className="avatar">KT</div><div className="status"><i/> Available for opportunities</div><p>“I like turning an idea into something people can actually use.”</p></div></section>
+   <section id="about" className="section"><div className="section-head"><span>01</span><h2>About me</h2></div><div className="about-grid"><div><p className="big">A fresher who enjoys the space where <strong>software, AI and automation</strong> meet.</p><p>I’m a B.Tech Computer Science & Engineering (IoT) graduate from RVR & JC College of Engineering. My hands-on work is centered around Python, APIs, databases and AI-assisted workflows.</p><p>I’m currently building my full-stack foundation while exploring practical generative-AI integrations and automation.</p></div><div className="timeline"><div><b>2022 — 2026</b><span>B.Tech CSE (IoT)<br/>RVR & JC College of Engineering</span></div><div><b>Ongoing</b><span>Python Full Stack with AI<br/>10000 Coders</span></div><div><b>2026</b><span>AI-focused projects & certifications</span></div></div></div></section>
+   <section id="projects" className="section dark"><div className="section-head"><span>02</span><h2>Selected work</h2></div><div className="projects">{projects.map((p,i)=><article className="project" key={p.title}><div className="project-top"><span className="num">0{i+1}</span><span className="type">{p.type}</span></div><div className="project-icon">{p.icon}</div><h3>{p.title}</h3><p>{p.desc}</p><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></article>)}</div><div className="repo-note"><span>More experiments & code live on GitHub.</span><a href={profileGithub} target="_blank">View GitHub →</a></div></section>
+   <section id="skills" className="section"><div className="section-head"><span>03</span><h2>Technical toolkit</h2></div><div className="skills">{skills.map(([a,b])=><div className="skill" key={a}><b>{a}</b><span>{b}</span></div>)}</div><div className="certs"><div><span>CERTIFICATION</span><b>HackerRank — Python</b></div><div><span>CERTIFICATION</span><b>HackerRank — SQL Basic</b></div><div><span>TRAINING</span><b>Python Full Stack with AI</b></div></div></section>
+   <section id="contact" className="section contact"><div className="contact-card"><div><div className="eyebrow">04 • LET'S CONNECT</div><h2>Have a problem worth solving?</h2><p>I'm open to entry-level software, Python, AI and full-stack opportunities.</p></div><div className="contact-actions"><a href="mailto:thambi6300@gmail.com">thambi6300@gmail.com</a><a href={linkedin} target="_blank">LinkedIn ↗</a><a href={profileGithub} target="_blank">GitHub ↗</a></div></div></section>
+  </main><footer>© 2026 Kasimala Thambi <span>Built with React + Vite</span></footer>
+ </div>}
+createRoot(document.getElementById('root')).render(<App/>);
